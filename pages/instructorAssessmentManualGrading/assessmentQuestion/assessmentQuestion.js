@@ -33,7 +33,7 @@ router.get(
     };
 
     const result = await sqldb.queryAsync(sql.select_instance_questions_manual_grading, params);
-    res.send({ instance_questions: result.rows });
+    res.send({ instance_questions: result.rows.map((row, idx) => ({ index: idx + 1, ...row })) });
   })
 );
 
@@ -79,8 +79,7 @@ router.post(
       res.send({});
     } else if (req.body.__action === 'edit_question_points') {
       const params = [
-        res.locals.assessment_id,
-        req.body.assessment_instance_id,
+        res.locals.assessment.id,
         null, // submission_id
         req.body.instance_question_id,
         null, // uid
@@ -108,8 +107,7 @@ router.post(
       res.send({});
     } else if (req.body.__action === 'edit_question_score_perc') {
       const params = [
-        res.locals.assessment_id,
-        req.body.assessment_instance_id,
+        res.locals.assessment.id,
         null, // submission_id
         req.body.instance_question_id,
         null, // uid
