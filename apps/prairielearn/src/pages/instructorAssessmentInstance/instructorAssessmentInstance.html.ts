@@ -8,6 +8,29 @@ import { nodeModulesAssetPath, compiledScriptTag } from '../../lib/assets.js';
 import { Modal } from '../../components/Modal.html.js';
 import { formatFloat } from '../../lib/format.js';
 
+function trim_data(data_in, event_name: string) {
+
+  if (event_name !== 'New variant') {
+    return data_in;
+  }
+  // Make a deep copy of the data
+  const data_copy: any = JSON.parse(JSON.stringify(data_in));
+  
+  if ('_workspace_files' in data_copy.params) {
+    data_copy.params['_workspace_files'].forEach((item) => console.log(Object.keys(item)));
+    data_copy.params['_workspace_files'].forEach((item) => {
+      const maxLen = 100;  // Choice of 100 is arbitrary. Anybody have a better suggestion?
+      if (item.encoding === 'base64' || item.encoding === 'hex') {
+        item.contents = '...' // No point in showing any content at all since it is effectively meaningless.
+      } else if (item.contents.length > maxLen) {
+        item.contents = `${item.contents.substring(0, maxLen - 50)}...${item.contents.substring(item.contents.length - 50)}`;
+      }
+    });
+  }
+  return data_copy.params;  // This isn't working.  I'm not reading the data structure correctly.
+
+}
+
 export const AssessmentInstanceStatsSchema = z.object({
   assessment_instance_id: IdSchema,
   average_submission_score: z.number().nullable(),
@@ -690,7 +713,7 @@ export function InstructorAssessmentInstance({
                       </td>
                       ${row.event_name !== 'External grading results'
                         ? html`<td style="word-break: break-all;">
-                            ${row.data != null ? JSON.stringify(row.data) : ''}
+                            ${row.data != null ? JSON.stringify(trim_data(row.data, row.event_name)) : ''}
                           </td>`
                         : html`
                             <td>
