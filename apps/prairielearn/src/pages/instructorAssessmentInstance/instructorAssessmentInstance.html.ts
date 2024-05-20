@@ -28,7 +28,6 @@ function trim_data(data_in, event_name: string) {
     });
   }
   return data_copy.params;  // This isn't working.  I'm not reading the data structure correctly.
-
 }
 
 export const AssessmentInstanceStatsSchema = z.object({
