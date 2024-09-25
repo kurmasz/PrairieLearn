@@ -39,8 +39,9 @@ print_assignment_info(sys.argv[1])
 # determine wither there is exactly one access rule that contains uuids
 #    if not, print an error and exit
 # if there is exactly one
-#   * copy the input file (in case we mess up)
+#   * copy the input file (in case we mess up) (https://docs.python.org/3/library/shutil.html)
 #   * add all the names to the object,
 #   * write the modified object out as a new .json file.
 
-
+# When the above works, allow the first parameter to be a pattern 
+# instead of just a single file: https://docs.python.org/3/library/glob.html
