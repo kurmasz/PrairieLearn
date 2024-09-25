@@ -18,6 +18,8 @@ def print_assignment_info(data_file_name):
     for access_rule in data_from_json["allowAccess"]:
         if "uids" in access_rule:
             print(access_rule["uids"])
+# just a comment
+
 
 # Same of how to write .json as file.
 def write_to_json(file_name, object):
