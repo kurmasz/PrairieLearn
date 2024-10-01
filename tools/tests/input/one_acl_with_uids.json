@@ -1,0 +1,50 @@
+{
+    "uuid": "918fabeb-5922-4b31-ac64-4862c8efbca6",
+    "type": "Homework",
+    "title": "Homework 4",
+    "set": "Homework",
+    "number": "4",
+    "allowAccess": [
+        {
+            "uids": [
+                "john@smith.com",
+                "dave@smith.com",
+                "ingred@google.com"
+            ],
+            "mode": "Public",
+            "credit": 100,
+            "startDate": "2024-01-01T00:00:01",
+            "endDate": "2024-09-30T11:02:00"
+        },
+        {
+            "mode": "Public",
+            "credit": 100,
+            "startDate": "2024-09-03T14:00:00",
+            "endDate": "2024-09-22T23:59:00"
+        },
+        {
+            "mode": "Public",
+            "credit": 75,
+            "startDate": "2024-09-05T23:59:00",
+            "endDate": "2024-09-14T23:59:00"
+        },
+        {
+            "mode": "Public",
+            "credit": 0,
+            "startDate": "2024-09-05T14:00:00",
+            "endDate": "2024-12-31T23:59:59"
+        }
+    ],
+    "zones": [
+        {
+            "questions": [
+                {
+                    "id": "homework/hw_writing_functions2",
+                    "points": 2,
+                    "maxPoints": 2
+                }
+            ]
+        }
+    ],
+    "groupWork": false
+}
